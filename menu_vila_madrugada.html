@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vila Madrugada — Cardápio</title>
+  <meta name="description" content="Cardápio do Vila Madrugada">
+  <style>
+    :root{
+      --bg:#07050b;
+      --bg2:#100817;
+      --panel:rgba(22,12,31,.92);
+      --panel2:#1a0c25;
+      --purple:#a855f7;
+      --purple2:#d946ef;
+      --violet:#7c3aed;
+      --pink:#f0abfc;
+      --cream:#fff8ff;
+      --muted:#c9b9d2;
+      --gold:#f6d365;
+      --line:rgba(216,180,254,.16);
+      --shadow:0 22px 70px rgba(0,0,0,.55);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color:var(--cream);
+      background:
+        radial-gradient(circle at 15% 5%, rgba(168,85,247,.28), transparent 28%),
+        radial-gradient(circle at 90% 18%, rgba(217,70,239,.20), transparent 25%),
+        radial-gradient(circle at 50% 100%, rgba(124,58,237,.14), transparent 32%),
+        linear-gradient(135deg,#050409,#0d0613 55%,#07050b);
+      background-attachment:fixed;
+      line-height:1.35;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.08;
+      background-image:
+        linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);
+      background-size:44px 44px;
+      mask-image:linear-gradient(to bottom,black,transparent 80%);
+    }
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      padding:70px 20px 55px;
+      text-align:center;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(217,70,239,.25), transparent 42%),
+        linear-gradient(180deg,rgba(16,7,23,.96),rgba(7,5,11,.94));
+      border-bottom:1px solid var(--line);
+    }
+
+    .hero::before,
+    .hero::after{
+      content:"✦";
+      position:absolute;
+      color:rgba(240,171,252,.55);
+      font-size:5rem;
+      filter:drop-shadow(0 0 20px rgba(217,70,239,.8));
+    }
+    .hero::before{left:7%;top:15%}
+    .hero::after{right:8%;bottom:8%;font-size:3.5rem}
+
+    .brand{
+      display:inline-block;
+      font-size:clamp(2.5rem,8vw,5.2rem);
+      font-weight:950;
+      letter-spacing:-.07em;
+      color:#fff;
+      text-shadow:
+        0 0 5px #fff,
+        0 0 18px var(--purple),
+        0 0 42px rgba(217,70,239,.75);
+      transform:rotate(-2deg);
+      padding:2px 18px 8px;
+      position:relative;
+    }
+
+    .brand::after{
+      content:"";
+      position:absolute;
+      left:8%;
+      right:8%;
+      bottom:-4px;
+      height:3px;
+      border-radius:99px;
+      background:linear-gradient(90deg,transparent,var(--purple2),var(--pink),var(--purple2),transparent);
+      box-shadow:0 0 18px var(--purple2);
+    }
+
+    .subtitle{
+      margin:24px auto 0;
+      max-width:720px;
+      color:var(--muted);
+      font-size:.98rem;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+    }
+
+    .address{
+      display:inline-block;
+      margin-top:18px;
+      padding:8px 15px;
+      border:1px solid rgba(240,171,252,.25);
+      border-radius:999px;
+      font-weight:800;
+      color:var(--pink);
+      background:rgba(168,85,247,.08);
+      box-shadow:0 0 25px rgba(168,85,247,.12);
+    }
+
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:20;
+      display:flex;
+      gap:9px;
+      overflow-x:auto;
+      padding:13px 14px;
+      background:rgba(5,4,9,.88);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid var(--line);
+      scrollbar-width:none;
+    }
+    .nav::-webkit-scrollbar{display:none}
+
+    .nav a{
+      flex:0 0 auto;
+      text-decoration:none;
+      color:#eadcf2;
+      border:1px solid rgba(216,180,254,.16);
+      border-radius:999px;
+      padding:9px 15px;
+      font-size:.84rem;
+      font-weight:800;
+      background:linear-gradient(180deg,rgba(34,17,47,.9),rgba(16,8,23,.9));
+      transition:.2s ease;
+    }
+
+    .nav a:hover{
+      border-color:var(--purple);
+      color:#fff;
+      box-shadow:0 0 18px rgba(168,85,247,.35);
+      transform:translateY(-1px);
+    }
+
+    main{
+      width:min(1100px, calc(100% - 28px));
+      margin:28px auto 50px;
+    }
+
+    .section{
+      position:relative;
+      margin:0 0 30px;
+      background:
+        linear-gradient(145deg,rgba(28,14,39,.97),rgba(11,7,15,.97));
+      border:1px solid var(--line);
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:var(--shadow), inset 0 1px 0 rgba(255,255,255,.04);
+    }
+
+    .section::after{
+      content:"";
+      position:absolute;
+      width:130px;
+      height:130px;
+      right:-65px;
+      top:-65px;
+      border-radius:50%;
+      background:rgba(168,85,247,.16);
+      filter:blur(12px);
+      pointer-events:none;
+    }
+
+    .section-title{
+      margin:0;
+      padding:20px 22px;
+      color:#fff;
+      background:
+        linear-gradient(90deg,rgba(124,58,237,.88),rgba(168,85,247,.72) 55%,rgba(217,70,239,.42));
+      font-size:1.5rem;
+      font-weight:950;
+      letter-spacing:.02em;
+      text-shadow:0 2px 12px rgba(0,0,0,.35);
+      border-bottom:1px solid rgba(240,171,252,.16);
+    }
+
+    .items{padding:8px 20px 18px}
+
+    .item{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) auto;
+      gap:18px;
+      align-items:start;
+      padding:14px 0;
+      border-bottom:1px dashed var(--line);
+    }
+
+    .item:last-child{border-bottom:0}
+
+    .name{
+      font-size:1.04rem;
+      font-weight:800;
+    }
+
+    .desc{
+      display:block;
+      margin-top:4px;
+      color:var(--muted);
+      font-size:.82rem;
+      font-weight:400;
+    }
+
+    .price{
+      white-space:nowrap;
+      font-weight:950;
+      color:var(--gold);
+      font-size:1.05rem;
+      text-shadow:0 0 12px rgba(246,211,101,.16);
+    }
+
+    .note{
+      margin:0 20px 18px;
+      padding:13px 15px;
+      border-left:4px solid var(--purple2);
+      background:rgba(168,85,247,.09);
+      color:var(--muted);
+      font-size:.86rem;
+      border-radius:10px;
+      box-shadow:inset 0 0 20px rgba(168,85,247,.05);
+    }
+
+    .subheading{
+      margin:14px 0 2px;
+      color:var(--pink);
+      font-size:1.05rem;
+      font-weight:900;
+    }
+
+    .beer-head,
+    .beer-row{
+      display:grid;
+      grid-template-columns:1.3fr repeat(4,1fr);
+      gap:8px;
+      align-items:center;
+    }
+
+    .beer-head{
+      padding:14px 0 7px;
+      color:var(--muted);
+      font-size:.78rem;
+      text-transform:uppercase;
+      letter-spacing:.04em;
+    }
+
+    .beer-row{
+      padding:10px 0;
+      border-top:1px dashed var(--line);
+    }
+
+    .beer-row strong{color:var(--cream)}
+    .beer-row span{text-align:center}
+
+    footer{
+      text-align:center;
+      padding:20px 20px 50px;
+      color:var(--muted);
+    }
+
+    footer strong{
+      color:var(--pink);
+      text-shadow:0 0 15px rgba(217,70,239,.5);
+    }
+
+    @media (max-width:650px){
+      .hero{padding:38px 16px 28px}
+      main{width:min(100% - 18px,1100px); margin-top:18px}
+      .section-title{font-size:1.25rem}
+      .items{padding-left:14px;padding-right:14px}
+      .item{gap:10px}
+      .name{font-size:.96rem}
+      .price{font-size:.96rem}
+      .desc{font-size:.76rem}
+      .beer-head,.beer-row{font-size:.72rem;gap:4px}
+    }
+  
+    /* ===== PREMIUM BAR / NIGHTLIFE LAYER ===== */
+    :root{
+      --neon:#b968ff;
+      --neon2:#e05cff;
+      --deep:#050308;
+      --card:rgba(18,10,27,.78);
+      --glass:rgba(255,255,255,.045);
+      --white:#fffaff;
+      --silver:#d7c9df;
+      --gold2:#ffd978;
+    }
+
+    html{scroll-padding-top:78px}
+
+    body{
+      min-height:100vh;
+      background:
+        radial-gradient(900px 500px at 50% -10%, rgba(185,104,255,.24), transparent 60%),
+        radial-gradient(700px 500px at 100% 25%, rgba(224,92,255,.14), transparent 62%),
+        radial-gradient(700px 500px at 0% 65%, rgba(113,58,180,.13), transparent 60%),
+        #050308;
+    }
+
+    body::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:-1;
+      background:
+        linear-gradient(115deg,transparent 0 35%,rgba(255,255,255,.018) 35.2%,transparent 35.5%),
+        linear-gradient(245deg,transparent 0 58%,rgba(185,104,255,.025) 58.2%,transparent 58.5%);
+    }
+
+    .hero{
+      min-height:390px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      padding:76px 20px 64px;
+      border-bottom:1px solid rgba(214,177,255,.13);
+      box-shadow:0 30px 90px rgba(0,0,0,.55);
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      width:420px;
+      height:420px;
+      left:50%;
+      top:35%;
+      transform:translate(-50%,-50%);
+      border-radius:50%;
+      background:rgba(185,104,255,.13);
+      filter:blur(65px);
+    }
+
+    .hero::after{
+      content:"VILA • MADRUGADA";
+      position:absolute;
+      bottom:18px;
+      left:50%;
+      transform:translateX(-50%);
+      color:rgba(255,255,255,.09);
+      font-size:.65rem;
+      font-weight:900;
+      letter-spacing:.55em;
+      white-space:nowrap;
+    }
+
+    .brand{
+      z-index:1;
+      font-family:Impact, Haettenschweiler, "Arial Black", sans-serif;
+      font-size:clamp(3rem,10vw,7rem);
+      line-height:.9;
+      letter-spacing:-.055em;
+      text-transform:uppercase;
+      background:linear-gradient(180deg,#fff,#f1d8ff 45%,#b968ff 100%);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      filter:
+        drop-shadow(0 0 2px #fff)
+        drop-shadow(0 0 12px rgba(185,104,255,.9))
+        drop-shadow(0 0 35px rgba(224,92,255,.45));
+      transform:none;
+      padding:0;
+    }
+
+    .brand::after{
+      bottom:-18px;
+      left:10%;
+      right:10%;
+      height:4px;
+      background:linear-gradient(90deg,transparent,var(--neon),#fff,var(--neon2),transparent);
+      box-shadow:0 0 15px var(--neon2),0 0 35px rgba(185,104,255,.65);
+    }
+
+    .subtitle{
+      z-index:1;
+      margin-top:38px;
+      max-width:780px;
+      font-size:.76rem;
+      font-weight:800;
+      letter-spacing:.28em;
+      color:#d9c9e3;
+    }
+
+    .address{
+      z-index:1;
+      margin-top:22px;
+      color:#fff;
+      border-color:rgba(224,92,255,.35);
+      background:rgba(185,104,255,.08);
+      box-shadow:0 0 25px rgba(185,104,255,.12), inset 0 0 20px rgba(255,255,255,.025);
+    }
+
+    .nav{
+      padding:12px max(14px,calc((100% - 1120px)/2));
+      background:rgba(5,3,8,.80);
+      border-bottom:1px solid rgba(224,92,255,.14);
+      box-shadow:0 12px 30px rgba(0,0,0,.35);
+    }
+
+    .nav a{
+      border:1px solid rgba(216,180,254,.14);
+      background:linear-gradient(180deg,rgba(35,18,49,.85),rgba(13,7,19,.9));
+      box-shadow:inset 0 1px rgba(255,255,255,.05);
+    }
+
+    .nav a:first-child{
+      border-color:rgba(185,104,255,.5);
+      box-shadow:0 0 16px rgba(185,104,255,.18), inset 0 0 14px rgba(185,104,255,.08);
+    }
+
+    main{
+      width:min(1120px,calc(100% - 28px));
+      margin:38px auto 70px;
+    }
+
+    .section{
+      border:1px solid rgba(216,180,254,.12);
+      border-radius:28px;
+      background:
+        linear-gradient(145deg,rgba(27,14,39,.88),rgba(8,5,12,.93));
+      box-shadow:
+        0 25px 70px rgba(0,0,0,.45),
+        inset 0 1px rgba(255,255,255,.045);
+      transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+    }
+
+    .section:hover{
+      transform:translateY(-3px);
+      border-color:rgba(185,104,255,.28);
+      box-shadow:
+        0 30px 80px rgba(0,0,0,.52),
+        0 0 30px rgba(185,104,255,.08),
+        inset 0 1px rgba(255,255,255,.06);
+    }
+
+    .section-title{
+      position:relative;
+      padding:23px 24px;
+      background:
+        linear-gradient(100deg,rgba(111,49,172,.95),rgba(185,104,255,.78) 55%,rgba(224,92,255,.46));
+      font-size:1.42rem;
+      letter-spacing:.045em;
+      text-transform:uppercase;
+    }
+
+    .section-title::before{
+      content:"";
+      display:inline-block;
+      width:7px;
+      height:7px;
+      margin:0 12px 3px 0;
+      border-radius:50%;
+      background:#fff;
+      box-shadow:0 0 8px #fff,0 0 18px #e05cff;
+    }
+
+    .items{padding:10px 24px 22px}
+
+    .item{
+      position:relative;
+      padding:16px 0;
+      border-bottom:1px solid rgba(255,255,255,.065);
+    }
+
+    .item::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-1px;
+      width:0;
+      height:1px;
+      background:linear-gradient(90deg,var(--neon),transparent);
+      transition:width .25s ease;
+    }
+
+    .item:hover::after{width:70%}
+
+    .name{
+      font-size:1rem;
+      letter-spacing:.01em;
+    }
+
+    .desc{
+      color:#a99ab3;
+      line-height:1.45;
+    }
+
+    .price{
+      color:var(--gold2);
+      font-size:1.03rem;
+      padding:4px 9px;
+      border:1px solid rgba(255,217,120,.14);
+      border-radius:999px;
+      background:rgba(255,217,120,.035);
+    }
+
+    .note{
+      border-left-color:var(--neon2);
+      background:linear-gradient(90deg,rgba(185,104,255,.10),rgba(185,104,255,.025));
+    }
+
+    .beer-head{
+      color:#9f8baa;
+      font-weight:800;
+    }
+
+    .beer-row{
+      border-top-color:rgba(255,255,255,.065);
+    }
+
+    footer{
+      position:relative;
+      border-top:1px solid rgba(216,180,254,.10);
+      background:linear-gradient(180deg,transparent,rgba(185,104,255,.035));
+    }
+
+    footer::before{
+      content:"✦  ✦  ✦";
+      display:block;
+      margin-bottom:15px;
+      color:var(--neon);
+      letter-spacing:12px;
+      text-shadow:0 0 15px var(--neon);
+    }
+
+    @media (min-width:850px){
+      main{
+        display:grid;
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:28px;
+      }
+      .section{
+        margin:0;
+      }
+      .section:first-child,
+      .section:nth-child(2){
+        grid-column:span 2;
+      }
+    }
+
+    @media (max-width:650px){
+      .hero{min-height:330px;padding:62px 16px 54px}
+      .hero::after{font-size:.52rem;letter-spacing:.32em}
+      .subtitle{font-size:.62rem;letter-spacing:.17em;line-height:1.7}
+      main{width:calc(100% - 18px);margin-top:24px}
+      .section{border-radius:21px}
+      .section-title{padding:19px 17px;font-size:1.12rem}
+      .items{padding:7px 15px 17px}
+      .item{gap:8px;padding:14px 0}
+      .name{font-size:.91rem}
+      .price{font-size:.88rem;padding:3px 7px}
+    }
+
+  
+    /* ===== NOVO ESTILO: BAR ELEGANTE + ANIMAÇÃO DO NOME ===== */
+    :root{
+      --bg:#08070a;
+      --panel:#111016;
+      --panel2:#17131b;
+      --mauve:#b56cff;
+      --mauve2:#d79aff;
+      --soft:#eadcf2;
+      --muted:#a99dad;
+      --gold:#f5d27a;
+      --line:rgba(255,255,255,.10);
+    }
+
+    body{
+      background:
+        radial-gradient(circle at 50% -10%, rgba(181,108,255,.16), transparent 34%),
+        linear-gradient(135deg,#070609,#0c090e 50%,#08070a);
+      color:var(--soft);
+    }
+
+    body::before{
+      opacity:.035;
+      background-image:
+        radial-gradient(rgba(255,255,255,.8) .5px, transparent .5px);
+      background-size:7px 7px;
+    }
+
+    .hero{
+      min-height:360px;
+      padding:70px 20px 55px;
+      position:relative;
+      overflow:hidden;
+      background:
+        linear-gradient(180deg,rgba(8,7,10,.65),rgba(8,7,10,.98)),
+        radial-gradient(circle at 50% 45%,rgba(181,108,255,.16),transparent 40%);
+      border-bottom:1px solid rgba(181,108,255,.20);
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      width:460px;
+      height:180px;
+      left:50%;
+      top:35%;
+      transform:translate(-50%,-50%);
+      background:rgba(181,108,255,.10);
+      filter:blur(70px);
+      border-radius:50%;
+      pointer-events:none;
+    }
+
+    .hero::after{
+      content:"";
+      position:absolute;
+      left:50%;
+      bottom:22px;
+      width:min(420px,70%);
+      height:1px;
+      transform:translateX(-50%);
+      background:linear-gradient(90deg,transparent,var(--mauve),transparent);
+      box-shadow:0 0 16px rgba(181,108,255,.5);
+    }
+
+    /* Nom du bar : apparition + respiration + balayage lumineux */
+    .brand{
+      position:relative;
+      z-index:2;
+      display:inline-block;
+      padding:12px 22px 18px;
+      font-family:Georgia,"Times New Roman",serif;
+      font-size:clamp(3rem,9vw,6.2rem);
+      font-weight:700;
+      font-style:italic;
+      letter-spacing:.025em;
+      line-height:.9;
+      color:#fff;
+      background:none;
+      text-shadow:
+        0 0 4px rgba(255,255,255,.65),
+        0 0 16px rgba(181,108,255,.55);
+      transform:none;
+      animation:
+        barNameIn 1.4s cubic-bezier(.2,.8,.2,1) both,
+        barNameGlow 4.5s ease-in-out 1.4s infinite;
+    }
+
+    .brand::before{
+      content:"";
+      position:absolute;
+      inset:-12px -20px;
+      border:1px solid rgba(181,108,255,.18);
+      border-radius:50%;
+      transform:scaleX(1.05);
+      animation:halo 4.5s ease-in-out 1.4s infinite;
+      pointer-events:none;
+    }
+
+    .brand::after{
+      content:"";
+      position:absolute;
+      left:12%;
+      right:12%;
+      bottom:0;
+      height:2px;
+      border-radius:100%;
+      background:linear-gradient(90deg,transparent,var(--mauve2),#fff,var(--mauve2),transparent);
+      box-shadow:0 0 8px var(--mauve),0 0 20px rgba(181,108,255,.5);
+      transform-origin:center;
+      animation:lineReveal 1.5s ease-out .7s both;
+    }
+
+    @keyframes barNameIn{
+      0%{
+        opacity:0;
+        transform:translateY(22px) scale(.92);
+        letter-spacing:.35em;
+        filter:blur(8px);
+      }
+      65%{
+        opacity:1;
+        filter:blur(0);
+      }
+      100%{
+        opacity:1;
+        transform:translateY(0) scale(1);
+        letter-spacing:.025em;
+        filter:blur(0);
+      }
+    }
+
+    @keyframes barNameGlow{
+      0%,100%{
+        text-shadow:
+          0 0 4px rgba(255,255,255,.65),
+          0 0 15px rgba(181,108,255,.45);
+      }
+      50%{
+        text-shadow:
+          0 0 5px #fff,
+          0 0 22px rgba(181,108,255,.75),
+          0 0 42px rgba(181,108,255,.25);
+      }
+    }
+
+    @keyframes halo{
+      0%,100%{opacity:.35;transform:scaleX(1.02)}
+      50%{opacity:.8;transform:scaleX(1.07)}
+    }
+
+    @keyframes lineReveal{
+      0%{opacity:0;transform:scaleX(0)}
+      100%{opacity:1;transform:scaleX(1)}
+    }
+
+    .subtitle{
+      position:relative;
+      z-index:2;
+      margin:30px auto 0;
+      color:var(--muted);
+      font-size:.72rem;
+      font-weight:700;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+    }
+
+    .address{
+      position:relative;
+      z-index:2;
+      margin-top:18px;
+      padding:7px 14px;
+      color:var(--soft);
+      background:rgba(181,108,255,.06);
+      border:1px solid rgba(181,108,255,.25);
+      box-shadow:none;
+    }
+
+    .nav{
+      background:rgba(8,7,10,.94);
+      border-bottom:1px solid var(--line);
+      padding:12px 14px;
+    }
+
+    .nav a{
+      color:#d9cedf;
+      background:#111016;
+      border:1px solid rgba(255,255,255,.09);
+      transition:all .25s ease;
+    }
+
+    .nav a:hover{
+      color:#fff;
+      border-color:rgba(181,108,255,.65);
+      background:#1a1420;
+      box-shadow:0 0 16px rgba(181,108,255,.16);
+    }
+
+    main{
+      width:min(1080px,calc(100% - 28px));
+      margin:34px auto 60px;
+    }
+
+    .section{
+      background:linear-gradient(145deg,rgba(22,19,26,.96),rgba(12,10,14,.98));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:18px;
+      box-shadow:0 18px 45px rgba(0,0,0,.32);
+      transition:transform .25s ease,border-color .25s ease;
+    }
+
+    .section:hover{
+      transform:translateY(-2px);
+      border-color:rgba(181,108,255,.28);
+    }
+
+    .section-title{
+      padding:18px 20px;
+      color:#fff;
+      background:linear-gradient(90deg,#21162a,#17121b);
+      border-bottom:1px solid rgba(181,108,255,.16);
+      font-family:Georgia,"Times New Roman",serif;
+      font-size:1.45rem;
+      font-weight:700;
+      letter-spacing:.02em;
+      text-transform:none;
+    }
+
+    .section-title::first-letter{
+      color:var(--mauve2);
+    }
+
+    .item{
+      padding:15px 0;
+      border-bottom:1px solid rgba(255,255,255,.065);
+    }
+
+    .item:hover .name{
+      color:#fff;
+    }
+
+    .name{
+      color:#eee5f2;
+      transition:color .2s ease;
+    }
+
+    .desc{color:#9f94a4}
+
+    .price{
+      color:var(--gold);
+      border:0;
+      background:none;
+      padding:0;
+      text-shadow:0 0 8px rgba(245,210,122,.12);
+    }
+
+    .note{
+      border-left-color:var(--mauve);
+      background:rgba(181,108,255,.055);
+    }
+
+    footer{
+      border-top:1px solid rgba(255,255,255,.07);
+    }
+
+    footer::before{
+      content:"✦  VILA MADRUGADA  ✦";
+      color:rgba(181,108,255,.7);
+      letter-spacing:.2em;
+      text-shadow:0 0 12px rgba(181,108,255,.45);
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      .brand,.brand::before,.brand::after{
+        animation:none !important;
+      }
+    }
+
+    @media (max-width:650px){
+      .hero{min-height:310px;padding:60px 15px 50px}
+      .brand{
+        font-size:clamp(2.6rem,13vw,4.3rem);
+        padding-left:8px;
+        padding-right:8px;
+      }
+      .subtitle{
+        font-size:.58rem;
+        letter-spacing:.16em;
+        line-height:1.7;
+      }
+      main{margin-top:22px}
+      .section{border-radius:15px}
+      .section-title{font-size:1.22rem;padding:16px}
+    }
+
+  </style>
+</head>
+
+<body>
+  <header class="hero">
+    <div class="brand">VILA MADRUGADA</div>
+    <div class="subtitle">Bar • Lanches • Porções • Drinks • Pastéis • Chopp Artesanal</div>
+    <div class="address">📍 Rua Guaicui, 36</div>
+  </header>
+
+  <nav class="nav" aria-label="Categorias">
+    <a href="#porcoes">Porções</a>
+    <a href="#lanches">Lanches</a>
+    <a href="#pastel">Pastel Grande</a>
+    <a href="#drinks">Drink's em Dobro</a>
+    <a href="#drinks-cardapio">Drink's</a>
+    <a href="#bebidas">Bebidas</a>
+    <a href="#whiskey">Whiskey</a>
+    <a href="#doses">Doses</a>
+    <a href="#biritas">Biritas</a>
+    <a href="#cervejas">Cervejas</a>
+    <a href="#vinhos">Vinhos</a>
+    <a href="#chopp">Chopp Artesanal</a>
+  </nav>
+
+  <main>
+
+    <section class="section" id="porcoes">
+      <h2 class="section-title">Porções</h2>
+      <div class="items">
+        <div class="item"><div class="name">Bolinho de Arroz<span class="desc">12 unidades deliciosamente temperados</span></div><div class="price">R$ 5,00</div></div>
+        <div class="item"><div class="name">Mini Pastel</div><div class="price">R$ 6,00</div></div>
+        <div class="item"><div class="name">Batata Frita</div><div class="price">R$ 7,00</div></div>
+        <div class="item"><div class="name">Batata Frita — Simples</div><div class="price">R$ 6,00</div></div>
+        <div class="item"><div class="name">Polenta — Completa<span class="desc">com cheddar e bacon deliciosamente dourada</span></div><div class="price">R$ 7,00</div></div>
+        <div class="item"><div class="name">Polenta — Simples</div><div class="price">R$ 6,00</div></div>
+        <div class="item"><div class="name">Mandioca — Completa<span class="desc">com cheddar e bacon deliciosamente dourada</span></div><div class="price">R$ 7,00</div></div>
+        <div class="item"><div class="name">Mandioca — Simples</div><div class="price">R$ 6,00</div></div>
+        <div class="item"><div class="name">Contra Filé</div><div class="price">R$ 8,00</div></div>
+        <div class="item"><div class="name">Calabresa</div><div class="price">R$ 7,40</div></div>
+        <div class="item"><div class="name">Isca de Frango <span class="desc">empanada</span></div><div class="price">R$ 7,00</div></div>
+        <div class="item"><div class="name">Provolone Empanado</div><div class="price">R$ 8,60</div></div>
+        <div class="item"><div class="name">Vila Madrugada</div><div class="price">R$ 18,00</div></div>
+        <div class="item"><div class="name">Frango à passarinho</div><div class="price">R$ 7,00</div></div>
+        <div class="item"><div class="name">Tulipa de Frango</div><div class="price">R$ 7,30</div></div>
+        <div class="item"><div class="name">Anéis de cebola <span class="desc">empanadas</span></div><div class="price">R$ 6,20</div></div>
+      </div>
+    </section>
+
+    <section class="section" id="lanches">
+      <h2 class="section-title">Lanches</h2>
+      <div class="items">
+        <div class="item"><div class="name">Lanche de Carne Louca</div><div class="price">R$ 20,00</div></div>
+        <div class="item"><div class="name">Lanche de Pernil</div><div class="price">R$ 30,00</div></div>
+        <div class="item"><div class="name">Lanche de Berinjela</div><div class="price">R$ 25,00</div></div>
+        <div class="item"><div class="name">Misto Quente</div><div class="price">R$ 20,00</div></div>
+        <div class="item"><div class="name">Lanche de Linguiça</div><div class="price">R$ 30,00</div></div>
+        <div class="item"><div class="name">Toscana com Queijo e Agrião</div><div class="price">—</div></div>
+        <div class="item"><div class="name">Queijo Quente</div><div class="price">R$ 17,00</div></div>
+        <div class="item"><div class="name">Presunto Quente</div><div class="price">R$ 18,00</div></div>
+        <div class="item"><div class="name">Mortadela Quente</div><div class="price">R$ 20,00</div></div>
+        <div class="item"><div class="name">Boi Ralado</div><div class="price">R$ 22,00</div></div>
+        <div class="item"><div class="name">Buraco Quente</div><div class="price">R$ 25,00</div></div>
+        <div class="item">
+          <div class="name">Churrasco com Queijo
+            <span class="desc">pão francês contra filé em cubos, mussarela e maionese</span>
+          </div>
+          <div class="price">R$ 30,00</div>
+        </div>
+        <div class="item">
+          <div class="name">Churrasco Completo
+            <span class="desc">pão francês contra filé em cubos, mussarela, maionese e salada de vinagrete</span>
+          </div>
+          <div class="price">R$ 38,00</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="pastel">
+      <h2 class="section-title">Pastel Grande</h2>
+      <div class="items">
+        <div class="item"><div class="name">Queijo Mussarela</div><div class="price">R$ 15,00</div></div>
+        <div class="item"><div class="name">Carne Moída</div><div class="price">R$ 15,00</div></div>
+        <div class="item"><div class="name">Pizza</div><div class="price">R$ 15,00</div></div>
+        <div class="item"><div class="name">3 Queijos</div><div class="price">R$ 15,00</div></div>
+        <div class="item"><div class="name">Bauru</div><div class="price">R$ 15,00</div></div>
+        <div class="item"><div class="name">Frango Desfiado</div><div class="price">R$ 15,00</div></div>
+        <div class="item"><div class="name">Carne com Queijo</div><div class="price">R$ 20,00</div></div>
+        <div class="item"><div class="name">Frango com Catupiry</div><div class="price">R$ 20,00</div></div>
+        <div class="item"><div class="name">Pernil com Queijo</div><div class="price">R$ 20,00</div></div>
+      </div>
+    </section>
+
+    <section class="section" id="drinks">
+      <h2 class="section-title">Drink's em Dobro</h2>
+      <div class="items">
+        <div class="item"><div class="name">Caipirinha<span class="desc">Dois copos de 400ML • com vinho barreiro</span></div><div class="price">R$ 34,00</div></div>
+        <div class="item"><div class="name">Caipiroska<span class="desc">Dois copos de 400ML • com Smirnoff</span></div><div class="price">R$ 48,00</div></div>
+        <div class="item"><div class="name">Saquerinha<span class="desc">Dois copos de 400ML</span></div><div class="price">R$ 42,00</div></div>
+        <div class="item"><div class="name">Caipiroska de Absolut<span class="desc">Dois copos de 400ML</span></div><div class="price">R$ 60,00</div></div>
+        <div class="item"><div class="name">Gin<span class="desc">nos tipos de sabores: Tônica, de Melancia, Tropical</span></div><div class="price">R$ 44,00</div></div>
+      </div>
+      <div class="note"><strong>Atenção:</strong> devem ser do mesmo sabor e destilado.</div>
+    </section>
+
+
+    <section class="section" id="drinks-cardapio">
+      <h2 class="section-title">Drink's</h2>
+      <div class="items">
+        <div class="item"><div class="name">Mojito</div><div class="price">R$ 35,00</div></div>
+        <div class="item"><div class="name">Aperol</div><div class="price">R$ 35,00</div></div>
+        <div class="item"><div class="name">Dama de copas</div><div class="price">R$ 33,00</div></div>
+        <div class="item"><div class="name">Cuba Libre</div><div class="price">R$ 25,00</div></div>
+        <div class="item"><div class="name">Campari</div><div class="price">R$ 28,00</div></div>
+        <div class="item"><div class="name">Bombeirinho</div><div class="price">R$ 22,00</div></div>
+        <div class="item"><div class="name">Gin de Morango Especial (700ml)</div><div class="price">R$ 40,00</div></div>
+        <div class="item"><div class="name">Gin de Manga Especial (700ml)</div><div class="price">R$ 40,00</div></div>
+        <div class="item"><div class="name">Gin Tropical</div><div class="price">R$ 38,00</div></div>
+        <div class="item"><div class="name">Gin de Pitaya</div><div class="price">R$ 38,00</div></div>
+        <div class="item"><div class="name">Gin de Melancia</div><div class="price">R$ 38,00</div></div>
+        <div class="item"><div class="name">Gin Tônica</div><div class="price">R$ 38,00</div></div>
+        <div class="item"><div class="name">Caipirinha</div><div class="price">R$ 26,00</div></div>
+        <div class="item"><div class="name">Caipiroska</div><div class="price">R$ 26,00</div></div>
+        <div class="item"><div class="name">Saquerinha</div><div class="price">R$ 36,00</div></div>
+        <div class="item"><div class="name">Caipiroska de absolut</div><div class="price">R$ 32,00</div></div>
+        <div class="item"><div class="name">Madruga Tropical<span class="desc">Gin, maracujá e red Bull Tropical.</span></div><div class="price">R$ 42,00</div></div>
+        <div class="item"><div class="name">Madruga Love<span class="desc">Gin, morango com groselha.</span></div><div class="price">R$ 45,00</div></div>
+        <div class="item"><div class="name">Sex on the beach<span class="desc">Vodka, suco de laranja e groselha</span></div><div class="price">R$ 35,00</div></div>
+        <div class="item"><div class="name">Jambuzinho<span class="desc">Caipirinha base de jambu</span></div><div class="price">R$ 38,00</div></div>
+        <div class="item"><div class="name">Negroni<span class="desc">Cynar, campari e gin.</span></div><div class="price">R$ 38,00</div></div>
+        <div class="item"><div class="name">Cevadinha<span class="desc">Caipirinha base de cerveja, com limão</span></div><div class="price">R$ 30,00</div></div>
+        <div class="item"><div class="name">Garota de Ipanema<span class="desc">Gin, chá de frutas vermelhas, morango e xarope de frutas vermelhas</span></div><div class="price">R$ 45,00</div></div>
+        <div class="item"><div class="name">Pinga mel + limão</div><div class="price">R$ 30,00</div></div>
+        <div class="item"><div class="name">Jagerbomb</div><div class="price">R$ 45,00</div></div>
+      </div>
+    </section>
+
+    <section class="section" id="bebidas">
+      <h2 class="section-title">Bebidas</h2>
+      <div class="items">
+        <div class="item"><div class="name">Água sem gás</div><div class="price">R$ 5,00</div></div>
+        <div class="item"><div class="name">Água com gás</div><div class="price">R$ 7,00</div></div>
+        <div class="item"><div class="name">Água tônica</div><div class="price">R$ 10,00</div></div>
+        <div class="item"><div class="name">Refrigerante — Lata</div><div class="price">R$ 10,00</div></div>
+        <div class="item"><div class="name">Refrigerante KS</div><div class="price">R$ 12,00</div></div>
+        <div class="item"><div class="name">Suco natural — copo</div><div class="price">R$ 18,00</div></div>
+        <div class="item"><div class="name">Suco natural — jarra</div><div class="price">R$ 30,00</div></div>
+        <div class="item"><div class="name">Red Bull Energy</div><div class="price">R$ 18,00</div></div>
+        <div class="item"><div class="name">Monster Energy</div><div class="price">R$ 20,00</div></div>
+        <div class="item"><div class="name">Pink lemonade</div><div class="price">R$ 22,00</div></div>
+      </div>
+    </section>
+
+    <section class="section" id="whiskey">
+      <h2 class="section-title">Whiskey Dose — 50ml</h2>
+      <div class="items">
+        <div class="item"><div class="name">White Horse</div><div class="price">R$ 25,00</div></div>
+        <div class="item"><div class="name">Black &amp; White</div><div class="price">R$ 25,00</div></div>
+        <div class="item"><div class="name">Red Label</div><div class="price">R$ 30,00</div></div>
+        <div class="item"><div class="name">Black Label</div><div class="price">R$ 40,00</div></div>
+        <div class="item"><div class="name">Jack Daniel's</div><div class="price">R$ 40,00</div></div>
+        <div class="item"><div class="name">Ballantimes</div><div class="price">R$ 35,00</div></div>
+        <div class="item"><div class="name">Copo de gelo</div><div class="price">R$ 5,00</div></div>
+        <div class="item"><div class="name">Gelo de coco</div><div class="price">R$ 10,00</div></div>
+      </div>
+    </section>
+
+    <section class="section" id="doses">
+      <h2 class="section-title">Doses — 40 ml</h2>
+      <div class="items">
+        <div class="item"><div class="name">Tequila Cuervo OURO</div><div class="price">R$ 28,00</div></div>
+        <div class="item"><div class="name">Cachaça</div><div class="price">R$ 15,00</div></div>
+        <div class="item"><div class="name">Pinga com mel e limão</div><div class="price">R$ 20,00</div></div>
+        <div class="item"><div class="name">Busca vida</div><div class="price">R$ 18,00</div></div>
+        <div class="item"><div class="name">Canelinha</div><div class="price">R$ 15,00</div></div>
+        <div class="item"><div class="name">Bananinha</div><div class="price">R$ 15,00</div></div>
+        <div class="item"><div class="name">Gin</div><div class="price">R$ 15,00</div></div>
+        <div class="item"><div class="name">Smirnoff</div><div class="price">R$ 26,00</div></div>
+        <div class="item"><div class="name">Absolut</div><div class="price">R$ 25,00</div></div>
+        <div class="item"><div class="name">Jambu</div><div class="price">R$ 38,00</div></div>
+        <div class="item"><div class="name">Ballena</div><div class="price">R$ 20,00</div></div>
+        <div class="item"><div class="name">Jagermeister</div><div class="price">R$ 28,00</div></div>
+        <div class="item"><div class="name">Licor 43</div><div class="price">R$ 30,00</div></div>
+      </div>
+    </section>
+
+    <section class="section" id="biritas">
+      <h2 class="section-title">Biritas</h2>
+      <div class="items">
+        <div class="item"><div class="name">Ice Long Neck</div><div class="price">R$ 17,00</div></div>
+        <div class="item"><div class="name">Skol Beats Long Neck</div><div class="price">R$ 18,00</div></div>
+        <div class="item"><div class="name">Catuaba Copo</div><div class="price">R$ 15,00</div></div>
+        <div class="item"><div class="name">Catuaba Garrafa</div><div class="price">R$ 45,00</div></div>
+        <div class="item"><div class="name">Draft</div><div class="price">R$ 25,00</div></div>
+        <div class="item"><div class="name">Xeque matte<span class="desc">com gelo e limão</span></div><div class="price">R$ 23,00</div></div>
+      </div>
+    </section>
+
+    <section class="section" id="cervejas">
+      <h2 class="section-title">Cervejas — Garrafa de 600ml</h2>
+      <div class="items">
+        <div class="item"><div class="name">Heineken</div><div class="price">R$ 23,00</div></div>
+        <div class="item"><div class="name">Becks</div><div class="price">R$ 19,00</div></div>
+        <div class="item"><div class="name">Colorado</div><div class="price">R$ 23,00</div></div>
+        <div class="item"><div class="name">Patagônia</div><div class="price">R$ 19,00</div></div>
+        <div class="item"><div class="name">Serra Malte</div><div class="price">R$ 19,00</div></div>
+        <div class="item"><div class="name">Cassildis</div><div class="price">R$ 19,00</div></div>
+        <div class="item"><div class="name">Eisenbahn</div><div class="price">R$ 18,00</div></div>
+        <div class="item"><div class="name">Original</div><div class="price">R$ 19,00</div></div>
+        <div class="item"><div class="name">Budweiser</div><div class="price">R$ 19,00</div></div>
+        <div class="item"><div class="name">Spaten</div><div class="price">R$ 19,00</div></div>
+        <div class="item"><div class="name">Estrella Galicia</div><div class="price">R$ 19,00</div></div>
+        <div class="item"><div class="name">Stella Artois</div><div class="price">R$ 19,00</div></div>
+        <div class="item"><div class="name">Cú de Burro<span class="desc">Limão e sal.</span></div><div class="price">R$ 3,00</div></div>
+      </div>
+    </section>
+
+    <section class="section" id="longneck">
+      <h2 class="section-title">Long Neck</h2>
+      <div class="items">
+        <div class="item"><div class="name">Heineken, Spaten, Budweiser, Stella Artois, Eisenbahn, Becks</div><div class="price">R$ 16,00</div></div>
+        <div class="item"><div class="name">Corona Long Neck</div><div class="price">R$ 17,00</div></div>
+        <div class="item"><div class="name">Long Neck Zero<span class="desc">Heineken, Budweiser e Corona</span></div><div class="price">R$ 17,00</div></div>
+      </div>
+    </section>
+
+    <section class="section" id="vinhos">
+      <h2 class="section-title">Vinhos</h2>
+      <div class="items">
+        <div class="item"><div class="name">Garrafa<span class="desc">Tinto / Branco ou Rosé.</span></div><div class="price">R$ 92,00</div></div>
+        <div class="item"><div class="name">Taça</div><div class="price">R$ 22,00</div></div>
+      </div>
+    </section>
+
+    <section class="section" id="chopp">
+      <h2 class="section-title">Chopp Artesanal</h2>
+      <div class="items">
+        <div class="beer-head">
+          <strong>Tipo</strong><span>300 ML</span><span>400 ML</span><span>500 ML</span><span>700 ML</span>
+        </div>
+        <div class="beer-row">
+          <strong>IPA</strong><span>R$ 25,00</span><span>R$ 30,00</span><span>R$ 37,00</span><span>R$ 43,00</span>
+        </div>
+        <div class="beer-row">
+          <strong>PILSEN</strong><span>R$ 20,00</span><span>R$ 26,00</span><span>R$ 32,00</span><span>R$ 37,00</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div><strong>Vila Madrugada</strong> • Rua Guaicui, 36</div>
+    <div style="margin-top:6px">🐾 Pet friendly</div>
+  </footer>
+</body>
+</html>
